@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import UseState from './UseState';
+import UseReducer from './UseReducer';
+import UseEffect from './UseEffect';
+import UseContext from './UseContext';
 
 class App extends Component {
+  state = {
+    show: true,
+    counter: 0
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+          <UseState />
+          <UseReducer />
+          <button onClick={() => this.setState({ show: !this.state.show })}>show</button>
+          <button onClick={() => this.setState({ counter: this.state.counter + 1 })}>++</button>
+          { this.state.show && <UseEffect counter={this.state.counter} /> }
+          <UseContext />
       </div>
     );
   }
